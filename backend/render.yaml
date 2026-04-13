@@ -1,0 +1,34 @@
+# render.yaml
+# Render.com deployment configuration for the backend
+
+services:
+  - type: web
+    name: gym-form-checker-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11"
+      - key: DEBUG
+        value: "false"
+      - key: UPLOAD_DIR
+        value: "/opt/render/project/uploads"
+      - key: MAX_VIDEO_SIZE_MB
+        value: "100"
+      - key: MEDIAPIPE_MODEL_COMPLEXITY
+        value: "1"
+      - key: FRAME_SKIP
+        value: "3"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        value: "sqlite+aiosqlite:///./gymform.db"
+
+  # Optional: use a persistent disk for uploads
+  # disk:
+  #   name: uploads-disk
+  #   mountPath: /opt/render/project/uploads
+  #   sizeGB: 10

@@ -1,0 +1,260 @@
+{
+  "_comment": "Exercise configuration file. Add new exercises here without touching Python code.",
+  "_version": "1.0",
+  "exercises": {
+    "squat": {
+      "id": "squat",
+      "name": "Squat",
+      "aliases": ["bodyweight squat", "air squat", "back squat", "goblet squat"],
+      "preferred_view": "side",
+      "view_warning": "Side view gives significantly better form feedback for squats",
+      "key_joints": ["left_hip", "left_knee", "left_ankle", "right_hip", "right_knee", "right_ankle"],
+      "rep_logic": {
+        "tracking_joint": "left_knee",
+        "landmarks": ["left_hip", "left_knee", "left_ankle"],
+        "down_threshold": 100,
+        "up_threshold": 160,
+        "direction": "decrease_to_down"
+      },
+      "auto_detection": {
+        "primary_landmarks": ["left_hip", "left_knee", "left_ankle"],
+        "motion_range": 65,
+        "min_reps_to_confirm": 2
+      },
+      "rules": {
+        "beginner": [
+          {
+            "joint": "left_knee",
+            "landmarks": ["left_hip", "left_knee", "left_ankle"],
+            "phase": "bottom",
+            "min_angle": 80,
+            "feedback": "Go a bit lower — aim for thighs parallel to floor",
+            "severity": "low"
+          },
+          {
+            "joint": "left_hip",
+            "landmarks": ["left_shoulder", "left_hip", "left_knee"],
+            "phase": "any",
+            "min_angle": 45,
+            "max_angle": 120,
+            "feedback": "Keep your chest up and back straight",
+            "severity": "medium",
+            "injury_warning": "Excessive forward lean puts stress on your lower back"
+          }
+        ],
+        "intermediate": [
+          {
+            "joint": "left_knee",
+            "landmarks": ["left_hip", "left_knee", "left_ankle"],
+            "phase": "bottom",
+            "min_angle": 70,
+            "feedback": "Go lower — aim for parallel or below",
+            "severity": "medium"
+          },
+          {
+            "joint": "left_hip",
+            "landmarks": ["left_shoulder", "left_hip", "left_knee"],
+            "phase": "any",
+            "min_angle": 45,
+            "max_angle": 110,
+            "feedback": "Keep your torso more upright",
+            "severity": "medium"
+          },
+          {
+            "joint": "right_knee",
+            "landmarks": ["right_hip", "right_knee", "right_ankle"],
+            "phase": "bottom",
+            "min_angle": 70,
+            "feedback": "Knees collapsing inward — push them out",
+            "severity": "high",
+            "injury_warning": "Risk of knee strain — knees should track over toes"
+          }
+        ],
+        "advanced": [
+          {
+            "joint": "left_knee",
+            "landmarks": ["left_hip", "left_knee", "left_ankle"],
+            "phase": "bottom",
+            "min_angle": 60,
+            "feedback": "Not reaching full depth",
+            "severity": "medium"
+          },
+          {
+            "joint": "left_hip",
+            "landmarks": ["left_shoulder", "left_hip", "left_knee"],
+            "phase": "any",
+            "min_angle": 40,
+            "max_angle": 100,
+            "feedback": "Maintain a perfectly upright torso",
+            "severity": "high"
+          }
+        ]
+      },
+      "feedback_messages": {
+        "good_rep": ["Great rep!", "Perfect depth!", "Solid form!", "Clean squat!"],
+        "encouragement": ["Keep going!", "You've got this!", "Stay strong!", "Drive through!"]
+      }
+    },
+    "pushup": {
+      "id": "pushup",
+      "name": "Push-up",
+      "aliases": ["push up", "press up", "pushups"],
+      "preferred_view": "side",
+      "view_warning": "Side view is essential for accurate push-up form analysis",
+      "key_joints": ["left_shoulder", "left_elbow", "left_wrist", "left_hip", "left_knee"],
+      "rep_logic": {
+        "tracking_joint": "left_elbow",
+        "landmarks": ["left_shoulder", "left_elbow", "left_wrist"],
+        "down_threshold": 100,
+        "up_threshold": 155,
+        "direction": "decrease_to_down"
+      },
+      "auto_detection": {
+        "primary_landmarks": ["left_shoulder", "left_elbow", "left_wrist"],
+        "motion_range": 55,
+        "min_reps_to_confirm": 2
+      },
+      "rules": {
+        "beginner": [
+          {
+            "joint": "left_elbow",
+            "landmarks": ["left_shoulder", "left_elbow", "left_wrist"],
+            "phase": "bottom",
+            "min_angle": 80,
+            "max_angle": 110,
+            "feedback": "Lower your chest closer to the floor",
+            "severity": "low"
+          },
+          {
+            "joint": "left_hip",
+            "landmarks": ["left_shoulder", "left_hip", "left_knee"],
+            "phase": "any",
+            "min_angle": 160,
+            "feedback": "Keep your body in a straight line",
+            "severity": "medium",
+            "injury_warning": "Sagging hips put stress on your lower back"
+          }
+        ],
+        "intermediate": [
+          {
+            "joint": "left_elbow",
+            "landmarks": ["left_shoulder", "left_elbow", "left_wrist"],
+            "phase": "bottom",
+            "min_angle": 85,
+            "max_angle": 100,
+            "feedback": "Get your elbows to 90 degrees at the bottom",
+            "severity": "medium"
+          },
+          {
+            "joint": "left_elbow",
+            "landmarks": ["left_shoulder", "left_elbow", "left_wrist"],
+            "phase": "top",
+            "min_angle": 155,
+            "feedback": "Fully extend your arms at the top",
+            "severity": "low"
+          },
+          {
+            "joint": "left_hip",
+            "landmarks": ["left_shoulder", "left_hip", "left_knee"],
+            "phase": "any",
+            "min_angle": 165,
+            "feedback": "Hips sagging — brace your core",
+            "severity": "high",
+            "injury_warning": "Hip sag increases lower back injury risk"
+          }
+        ],
+        "advanced": [
+          {
+            "joint": "left_elbow",
+            "landmarks": ["left_shoulder", "left_elbow", "left_wrist"],
+            "phase": "bottom",
+            "min_angle": 88,
+            "max_angle": 95,
+            "feedback": "Precisely 90 degrees at the bottom",
+            "severity": "medium"
+          },
+          {
+            "joint": "left_shoulder",
+            "landmarks": ["left_elbow", "left_shoulder", "left_hip"],
+            "phase": "any",
+            "min_angle": 55,
+            "max_angle": 75,
+            "feedback": "Elbows flaring too wide — tuck them in",
+            "severity": "medium"
+          }
+        ]
+      },
+      "feedback_messages": {
+        "good_rep": ["Clean rep!", "Perfect form!", "Nice push!"],
+        "encouragement": ["Push through it!", "Stay tight!", "Core engaged!"]
+      }
+    },
+    "deadlift": {
+      "id": "deadlift",
+      "name": "Deadlift",
+      "aliases": ["romanian deadlift", "rdl", "conventional deadlift", "stiff leg"],
+      "preferred_view": "side",
+      "view_warning": "Side view is critical for deadlift spine analysis — front view is insufficient",
+      "key_joints": ["left_shoulder", "left_hip", "left_knee", "left_ankle"],
+      "rep_logic": {
+        "tracking_joint": "left_hip",
+        "landmarks": ["left_shoulder", "left_hip", "left_knee"],
+        "down_threshold": 80,
+        "up_threshold": 155,
+        "direction": "decrease_to_down"
+      },
+      "auto_detection": {
+        "primary_landmarks": ["left_shoulder", "left_hip", "left_knee"],
+        "motion_range": 75,
+        "min_reps_to_confirm": 2
+      },
+      "rules": {
+        "beginner": [
+          {
+            "joint": "left_shoulder",
+            "landmarks": ["left_ear", "left_shoulder", "left_hip"],
+            "phase": "any",
+            "min_angle": 158,
+            "feedback": "Keep your spine neutral — avoid rounding your back",
+            "severity": "high",
+            "injury_warning": "Rounded back under load risks disc herniation — reduce weight"
+          }
+        ],
+        "intermediate": [
+          {
+            "joint": "left_shoulder",
+            "landmarks": ["left_ear", "left_shoulder", "left_hip"],
+            "phase": "any",
+            "min_angle": 162,
+            "feedback": "Back rounding — maintain neutral spine throughout",
+            "severity": "high",
+            "injury_warning": "STOP — back posture is unsafe. Risk of serious injury."
+          },
+          {
+            "joint": "left_hip",
+            "landmarks": ["left_shoulder", "left_hip", "left_knee"],
+            "phase": "bottom",
+            "max_angle": 85,
+            "feedback": "Push hips back further — more hip hinge",
+            "severity": "medium"
+          }
+        ],
+        "advanced": [
+          {
+            "joint": "left_shoulder",
+            "landmarks": ["left_ear", "left_shoulder", "left_hip"],
+            "phase": "any",
+            "min_angle": 166,
+            "feedback": "Maintain perfectly neutral spine throughout",
+            "severity": "high",
+            "injury_warning": "Spinal flexion under load is dangerous at this level"
+          }
+        ]
+      },
+      "feedback_messages": {
+        "good_rep": ["Strong lift!", "Perfect hinge!", "Great form!", "Textbook rep!"],
+        "encouragement": ["Drive those hips!", "Keep that spine tight!", "Lock it out!"]
+      }
+    }
+  }
+}
